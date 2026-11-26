@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=VT323&display=swap");
+
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: "Share Tech Mono", monospace;
+}
+
+
+body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 24px 16px;
+    background-color: #090b2b;
+    background-image:
+        linear-gradient(rgba(7, 10, 40, 0.28), rgba(7, 10, 40, 0.36)),
+        url("pics/pixelb.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.calculator {
+    position: relative;
+    z-index: 3;
+    width: min(340px, 100%);
+    padding: 18px 24px 24px;
+    background: rgba(10, 17, 56, 0.86);
+    border: 6px solid #51459d;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 6px rgba(63, 206, 235, 0.2);
+    backdrop-filter: blur(3px);
+}
+
+
+.calculator-brand {
+    margin-bottom: 10px;
+    color: #81efff;
+    font-family: "Press Start 2P", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    visibility: hidden;
+}
+
+
+.display {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+form input[name="textview"] {
+    width: 100%;
+    height: 74px;
+    padding: 8px 14px 0;
+    background: #102e52;
+    border: 5px solid #53d7ed;
+    border-radius: 0;
+    box-shadow: inset 6px 6px 0 rgba(3, 10, 36, 0.52);
+    color: #a4f5ff;
+    font-family: "VT323", monospace;
+    font-size: 3.2rem;
+    text-align: right;
+    text-shadow: 0 0 8px rgba(83, 215, 237, 0.48);
+    outline: none;
+    cursor: pointer;
+}
+
+
+.buttons {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+
+button {
+    height: 56px;
+    border: 2px solid #29245f;
+    background: #b7dff0;
+    box-shadow: 0 6px 0 #29245f;
+    color: #101943;
+    font-family: "Press Start 2P", "Share Tech Mono", monospace;
+    font-size: 1rem;
+    border-radius: 0;
+    cursor: pointer;
+    transition:
+        transform 0.08s ease,
+        box-shadow 0.08s ease,
+        background-color 0.15s ease;
+}
+
+
+button:hover {
+    background: #dcf7ff;
+}
+
+
+button:active {
+    transform: translateY(5px);
+    box-shadow: 0 1px 0 #29245f;
+}
+
+
+.btn-op {
+    background: #26aeca;
+    color: #07162f;
+}
+.btn-op:hover {
+    background: #59d7e8;
+}
+
+
+.btn-clear {
+    background: #c64cb9;
+    color: #fff5ff;
+}
+.btn-clear:hover {
+    background: #e469cc;
+}
+
+
+.btn-func {
+    background: #7960c5;
+    color: #fff5ff;
+}
+.btn-func:hover {
+    background: #9c83e7;
+}
+
+
+.btn-equal {
+    grid-row: span 2;
+    height: auto;
+    background: #4cd4ec;
+    color: #07162f;
+}
+.btn-equal:hover {
+    background: #8af0fa;
+}
+
+
+.btn-zero {
+grid-column: span 2;
+}
+
+.pacman-trigger {
+    position: absolute;
+    z-index: 1;
+    top: 113px;
+    left: calc(50% - 14px);
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    transform: none;
+    border: 3px solid #3ca4b9;
+    border-radius: 50%;
+    background: #208fa6;
+    box-shadow:
+        0 0 0 3px #51459d,
+        0 6px 0 #29245f,
+        0 0 18px rgba(60, 164, 185, 0.35);
+    color: #07162f;
+    font-family: "Press Start 2P", monospace;
+    font-size: 0.5rem;
+    transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.15s ease;
+}
+
+.pacman-trigger:hover {
+    background: #2a9bb0;
+}
+
+.pacman-trigger:active {
+    transform: translateY(4px);
+    box-shadow:
+        0 0 0 3px #51459d,
+        0 2px 0 #29245f,
+        0 0 18px rgba(60, 164, 185, 0.35);
+}
+
+.key-eight {
+    border-bottom-right-radius: 20px;
+}
+
+.key-nine {
+    border-bottom-left-radius: 20px;
+}
+
+.key-five {
+    border-top-right-radius: 20px;
+}
+
+.key-six {
+    border-top-left-radius: 20px;
+}
+
+.display-animation {
+    position: absolute;
+    z-index: 2;
+    inset: 5px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ghost {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 30px;
+    height: 34px;
+    background: var(--ghost-color, #f04e91);
+    clip-path: polygon(0 100%, 0 42%, 4% 24%, 14% 9%, 30% 1%, 50% 0, 70% 1%, 86% 9%, 96% 24%, 100% 42%, 100% 100%, 84% 86%, 67% 100%, 50% 86%, 33% 100%, 16% 86%);
+    filter: drop-shadow(0 0 6px var(--ghost-color, #f04e91));
+    transform: translateY(-50%);
+    animation: ghost-run 2.6s linear forwards, ghost-bob 0.28s ease-in-out infinite alternate;
+    transition: opacity 0.22s ease, transform 0.22s ease, filter 0.22s ease;
+}
+
+.ghost::before {
+    content: "";
+    position: absolute;
+    top: 38%;
+    left: 22%;
+    width: 6px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 11px 0 0 #fff;
+}
+
+.ghost::after {
+    content: "";
+    position: absolute;
+    top: 46%;
+    left: 30%;
+    width: 3px;
+    height: 4px;
+    border-radius: 50%;
+    background: #18244d;
+    box-shadow: 11px 0 0 #18244d;
+}
+
+.ghost.is-eaten {
+    animation-play-state: paused;
+    opacity: 0;
+    transform: translateY(-50%) scale(0.1);
+    filter: blur(3px);
+}
+
+.pacman {
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ffdf3f;
+    filter: drop-shadow(0 0 7px rgba(255, 223, 63, 0.7));
+    transform: translateY(-50%);
+    -webkit-mask: conic-gradient(#000 0deg 75deg, transparent 75deg 105deg, #000 105deg 360deg);
+    mask: conic-gradient(#000 0deg 75deg, transparent 75deg 105deg, #000 105deg 360deg);
+    animation: pacman-run 1.8s linear forwards, pacman-chomp 0.22s steps(1, end) infinite;
+    animation-delay: 0.35s, 0.35s;
+}
+
+.pacman::after {
+    content: "";
+    position: absolute;
+    top: 14%;
+    right: 24%;
+    width: 3px;
+    height: 3px;
+    background: #11183c;
+}
+
+@media (max-width: 428px) {
+    .pacman-trigger {
+        top: 115px;
+        left: calc(50% - 12px);
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@keyframes pacman-run {
+    to {
+        left: calc(100% + 32px);
+    }
+}
+
+@keyframes ghost-run {
+    to {
+        left: calc(100% + 32px);
+    }
+}
+
+@keyframes ghost-bob {
+    to {
+        margin-top: -3px;
+    }
+}
+
+@keyframes pacman-chomp {
+    0%, 100% {
+        -webkit-mask: conic-gradient(#000 0deg 75deg, transparent 75deg 105deg, #000 105deg 360deg);
+        mask: conic-gradient(#000 0deg 75deg, transparent 75deg 105deg, #000 105deg 360deg);
+    }
+    50% {
+        -webkit-mask: conic-gradient(#000 0deg 88deg, transparent 88deg 92deg, #000 92deg 360deg);
+        mask: conic-gradient(#000 0deg 88deg, transparent 88deg 92deg, #000 92deg 360deg);
+    }
+}
+
+

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="cs.css" />
+    <title>Calculator</title>
+</head>
+<body>
+    <main class="calculator" aria-label="Calculator">
+        <div class="calculator-brand" aria-hidden="true">blahblah</div>
+        <div class="display">
+            <form name="form1">
+                <input type="text" name="textview" readonly tabindex="-1" />
+            </form>
+            <div class="display-animation" aria-hidden="true"></div>
+        </div>
+        <section class="buttons">
+            <button type="button" class="btn-clear" onclick="clearScreen()">C</button>
+            <button type="button" class="btn-func" onclick="backspace()">⌫</button>
+            <button type="button" class="btn-op" onclick="insert('/')">/</button>
+            <button type="button" class="btn-op" onclick="insert('*')">×</button>
+
+            <button type="button" onclick="insert('7')">7</button>
+            <button type="button" class="key-eight" onclick="insert('8')">8</button>
+            <button type="button" class="key-nine" onclick="insert('9')">9</button>
+            <button type="button" class="btn-op" onclick="insert('-')">-</button>
+
+            <button type="button" onclick="insert('4')">4</button>
+            <button type="button" class="key-five" onclick="insert('5')">5</button>
+            <button type="button" class="key-six" onclick="insert('6')">6</button>
+            <button type="button" class="btn-op" onclick="insert('+')">+</button>
+
+            <button type="button" onclick="insert('1')">1</button>
+            <button type="button" onclick="insert('2')">2</button>
+            <button type="button" onclick="insert('3')">3</button>
+            <button type="button" class="btn-equal" onclick="equal()">=</button>
+
+            <button type="button" class="btn-zero" onclick="insert('0')">0</button>
+            <button type="button" onclick="insert('.')">.</button>
+            <button type="button" class="pacman-trigger" onclick="startPacman()" aria-label="Start Pac-Man">GO</button>
+        </section>
+    </main>
+
+    <script src="js.js"></script>
+</body>
+</html>
